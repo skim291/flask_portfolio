@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flask 기반 웹 포트폴리오 | 김서현</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="portfolio-detail-body">
+
+  <section class="portfolio-full">
+    <div class="portfolio-inner">
+      <h1>Flask 기반 웹 포트폴리오</h1>
+      <p class="subtitle">
+        Flask 프레임워크를 활용해 백엔드와 프런트엔드의 구조적 통합을 구현한 개인 포트폴리오 웹사이트입니다.
+      </p>
+
+      <hr class="divider">
+
+      <div class="portfolio-content">
+        <h2>프로젝트 개요</h2>
+        <p>
+          Flask의 <strong>라우팅</strong>, <strong>템플릿 상속</strong>, <strong>정적 파일 관리</strong> 구조를 이해하고
+          이를 기반으로 웹 포트폴리오를 설계했습니다.  
+          페이지 간 일관성을 유지하면서도 각기 다른 콘텐츠를 표현하도록 구성했습니다.
+        </p>
+
+        <h2>주요 구현</h2>
+        <ul>
+          <li>Flask 라우팅 기반 페이지 전환</li>
+          <li>템플릿 상속 구조를 통한 재사용성 확보</li>
+          <li>정적 파일 (CSS, JS, 이미지) 분리 관리</li>
+          <li>카드형 프로젝트 UI 및 전환 효과</li>
+        </ul>
+
+        <h2>기술 스택</h2>
+        <div class="tech-list">
+          <span>Flask</span>
+          <span>Python</span>
+          <span>HTML5 / CSS3</span>
+          <span>JavaScript</span>
+          <span>Jinja2</span>
+        </div>
+
+        <h2>결과 및 배운 점</h2>
+        <p>
+          Flask를 기반으로 백엔드와 프런트엔드의 연결 구조를 완전히 이해하게 되었으며,<br>
+          유지보수성과 확장성을 모두 갖춘 개인 웹 애플리케이션을 완성했습니다.
+        </p>
+      </div>
+
+      <a href="{{ url_for('projects') }}" class="back-btn">← 프로젝트 목록으로 돌아가기</a>
+    </div>
+  </section>
+
+  <script src="{{ url_for('static', filename='transition.js') }}"></script>
+</body>
+</html>

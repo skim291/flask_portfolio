@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;500&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #ffffff;
+  color: #111;
+  opacity: 1;
+  transition: opacity 0.6s ease-in-out;
+}
+
+body.fade-out {
+  opacity: 0;
+}
+
+/* 전체 컨테이너 */
+.container {
+  display: flex;
+  height: 100vh;
+  animation: fadeSlideIn 1s ease-in-out both;
+}
+
+/* ✅ 왼쪽: 프로필 + 인사말 (고정 영역) */
+.left-section {
+  flex: 1;
+  background-color: #1C1C1C;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 140px 60px;
+  animation: fadeInUp 1.2s ease both;
+}
+
+/* 프로필 이미지 */
+.left-section img {
+  width: auto;
+  height: 480px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1.4s ease both;
+}
+
+/* 인사말 문구 */
+.quote {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.25rem;
+  color: #ffffff;
+  line-height: 1.6;
+  position: relative;
+  max-width: 400px;
+  margin-top: 10px;
+  opacity: 0;
+  animation: fadeIn 1.8s ease forwards;
+  animation-delay: 0.3s;
+}
+
+/* 따옴표 스타일 */
+.quote::before,
+.quote::after {
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+}
+
+.quote::before {
+  content: "“";
+  top: -20px;
+  left: -15px;
+}
+
+.quote::after {
+  content: "”";
+  bottom: -25px;
+  right: -15px;
+}
+
+/* ✅ 오른쪽: 정보 영역 (페이지별로 바뀜) */
+.right-section {
+  flex: 1;
+  background-color: #fff;
+  padding: 100px 80px;
+  position: relative;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.4s;
+}
+
+/* 내용 텍스트*/
+.page-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  animation: fadeSlideIn 1s ease-in-out both;
+}
+
+/* 상단 네비게이션 */
+.navbar {
+  position: absolute;
+  top: 40px;
+  left: 80px;
+  right: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+/* 왼쪽 로고 텍스트 */
+.logo-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 1px;
+}
+
+/* 오른쪽 네비게이션 */
+.nav-right {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-right a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-right a:hover {
+  color: #777;
+}
+
+/* 중앙 텍스트 영역 */
+.intro {
+  position: absolute;
+  top: 60%;
+  left: 33%;
+  transform: translate(-33%, -60%);
+  max-width: 480px;
+  opacity: 0;
+  animation: fadeIntro 1.2s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes fadeIntro {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* 이름 */
+.intro h1 {
+  font-size: 90px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  line-height: 1.1;
+}
+
+/* 직업 */
+.intro h2 {
+  font-size: 26px;
+  font-weight: 400;
+  margin: 0 0 40px 0;
+  color: #333;
+}
+
+/* 연락처 정보 */
+.info p {
+  font-size: 17px;
+  line-height: 1.8;
+  margin: 4px 0;
+  color: #222;
+}
+
+.info strong {
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+/* 링크 영역 */
+.info a {
+  color: #222;
+  text-decoration: underline;
+  margin-right: 10px;
+}
+
+.info a:hover {
+  color: #777;
+}
+
+/* 아래쪽 버튼 */
+.resume-link {
+  display: inline-block;
+  margin-top: 80px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #6a7674;
+  text-decoration: none;
+  border-bottom: 1px solid #6a7674;
+  padding-bottom: 3px;
+  transition: 0.3s;
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+  animation-delay: 0.8s;
+}
+
+.resume-link:hover {
+  color: #777;
+  border-color: #777;
+}
+
+/* ---------- 부드러운 애니메이션 ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    animation: fadeIn 1s ease-in-out both;
+  }
+
+  .left-section, .right-section {
+    flex: none;
+    width: 100%;
+    height: auto;
+    padding: 60px 40px;
+  }
+
+  .intro {
+    position: static;
+    transform: none;
+    margin: 60px auto;
+    text-align: center;
+    animation: fadeInUp 1s ease forwards;
+  }
+}
+
+
+/* ---------- Projects Page ---------- */
+.projects-section {
+  margin-top: 10px;      /* ✅ 기존 120px → 40px */
+  padding-top: 0px;     /* ✅ 상단에 여백 추가 */
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.projects-section h1 {
+  font-size: 44px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.projects-section .subtitle {
+  font-size: 17px;
+  color: #666;
+  margin-bottom: 48px;
+}
+
+/* 카드 그리드 */
+.projects-grid {
+  display: flex;
+  flex-direction: column;  /* ✅ 세로 정렬 */
+  gap: 28px;
+}
+
+/* 카드 스타일 */
+.project-card {
+  display: flex;
+  flex-direction: row;   /* ✅ 이미지와 내용 나란히 배치 */
+  align-items: stretch;
+  background-color: #f9fafc;
+  border-radius: 14px;
+  text-decoration: none;
+  color: #111;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  background-color: #f0f4f8;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* 카드 이미지 */
+.project-card img {
+  width: 280px;
+  height: 200px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* 카드 내부 텍스트 */
+.card-content {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-content h2 {
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #111;
+  transition: color 0.2s ease;
+}
+
+.project-card:hover .card-content h2 {
+  color: #2563eb; /* hover 시 강조 */
+}
+
+.card-content p {
+  font-size: 15.5px;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.view-more {
+  font-weight: 600;
+  color: #2563eb;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  transition: color 0.2s ease;
+}
+
+.project-card:hover .view-more {
+  color: #1d4ed8;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+  .projects-grid {
+    flex-direction: column;
+  }
+
+  .project-card {
+    flex-direction: column;
+  }
+
+  .project-card img {
+    width: 100%;
+    height: 200px;
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+}
+
+/* 부드러운 등장 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Project Card Date Style ---------- */
+.project-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #4b5563;            /* 중간 회색 톤 텍스트 */
+  font-weight: 500;
+  margin: 12px 20px 0 20px;  /* 카드 양쪽과 이미지 사이 여백 */
+}
+
+.project-date i {
+  color: #4b5563;
+  font-size: 15px;
+}
+
+
+/* 포트폴리오 상세페이지 */
+/* ===== Portfolio Detail Unified Layout ===== */
+.portfolio-detail-body {
+  background: #1C1C1C;
+  color: #fff;
+  margin: 0;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+}
+
+.portfolio-full {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 120px 8%;
+  box-sizing: border-box;
+}
+
+.portfolio-inner {
+  max-width: 900px;
+  text-align: center;
+}
+
+.portfolio-inner h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #cfd8dc;
+  margin-bottom: 50px;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin-bottom: 50px;
+}
+
+.portfolio-content {
+  text-align: left;
+  line-height: 1.8;
+}
+
+.portfolio-content h2 {
+  color: #00c4ff;
+  margin-top: 60px;
+  font-size: 1.6rem;
+}
+
+.portfolio-content ul {
+  margin: 20px 0 40px;
+  list-style: none;
+  padding: 0;
+}
+
+.portfolio-content ul li {
+  margin: 8px 0;
+  position: relative;
+  padding-left: 20px;
+}
+
+.portfolio-content ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #00c4ff;
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0 60px;
+}
+
+.tech-list span {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(0,196,255,0.4);
+  color: #00c4ff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 60px;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.back-btn:hover {
+  color: #4dd0e1;
+}
+
+
+
