@@ -20,33 +20,60 @@
       <div class="portfolio-content">
         <h2>프로젝트 개요</h2>
         <p>
+          <strong>프로젝트명</strong> <span class="highlight-title"><김서현의 PORTFOLIO></span> <br>
+          <strong>개발기간:</strong> 2025.07 ~ 2025.08 <br>
+          <strong>사용 기술:</strong> Flask, Python, HTML5, CSS3, JavaScript, Jinja2<br><br>
           Flask의 <strong>라우팅</strong>, <strong>템플릿 상속</strong>, <strong>정적 파일 관리</strong> 구조를 이해하고
-          이를 기반으로 웹 포트폴리오를 설계했습니다.  
-          페이지 간 일관성을 유지하면서도 각기 다른 콘텐츠를 표현하도록 구성했습니다.
+          이를 기반으로 동적 웹 포트폴리오를 설계했습니다.<br>
+          단순한 정적 페이지가 아닌, 백엔드를 포함한 웹 애플리케이션 형태로 제작하여
+          유지보수성과 확장성을 고려했습니다.
         </p>
 
-        <h2>주요 구현</h2>
+        <h2>구현 과정</h2>
+        <p>
+          프로젝트는 Flask의 라우팅 구조를 중심으로 페이지 간 전환을 관리하고,
+          <code>base.html</code> 템플릿을 중심으로 모든 페이지가 공통 UI를 공유하도록 설계했습니다.
+        </p>
+
+        <h3> - Flask 프로젝트 구조 설계</h3>
+        <p>
+          디렉토리와 파일 구성은 다음과 같은 구조로 정리했으며, 템플릿·정적 리소스를 분리하여 관리했습니다.
+        </p>
+        <img src="{{ url_for('static', filename='structure.jpg') }}" alt="Flask 프로젝트 구조" class="project-img">
+
+        <h3>- app.py (라우팅 구성)</h3>
+        <p>
+          Flask의 핵심인 <code>app.py</code>를 통해 페이지별 라우팅을 설정했습니다.
+          각 페이지는 <code>render_template()</code>로 연결되며, Blueprint 확장에도 대응할 수 있도록 구성했습니다.
+        </p>
+        <img src="{{ url_for('static', filename='app_code.jpg') }}" alt="app.py 라우팅 코드 예시" class="project-img">
+
+        <h3>- 템플릿 설계 (templates/)</h3>
         <ul>
-          <li>Flask 라우팅 기반 페이지 전환</li>
-          <li>템플릿 상속 구조를 통한 재사용성 확보</li>
-          <li>정적 파일 (CSS, JS, 이미지) 분리 관리</li>
-          <li>카드형 프로젝트 UI 및 전환 효과</li>
+          <li><strong>base.html:</strong> 헤더, 네비게이션, 푸터를 포함한 공통 레이아웃</li>
+          <li><strong>index.html:</strong> 첫 화면 - 소개 및 정보</li>
+          <li><strong>about.html:</strong> 자기소개 및 기술 스택</li>
+          <li><strong>projects.html:</strong> 프로젝트 목록 및 썸네일</li>
+          <li><strong>contact.html:</strong> 이메일 및 연락 폼 (Flask-Mail 연동 고려)</li>
         </ul>
 
-        <h2>기술 스택</h2>
-        <div class="tech-list">
-          <span>Flask</span>
-          <span>Python</span>
-          <span>HTML5 / CSS3</span>
-          <span>JavaScript</span>
-          <span>Jinja2</span>
-        </div>
+        <h3>- 정적 리소스 관리 (static/)</h3>
+        <ul>
+          <li><strong>style.css:</strong> 컬러 팔레트 및 반응형 레이아웃 정의</li>
+          <li><strong>transition.js:</strong> 페이지 전환 효과 및 스크롤 애니메이션 구현</li>
+          <li><strong>img/:</strong> 프로필 및 프로젝트 썸네일 이미지 보관</li>
+        </ul>
 
-        <h2>결과 및 배운 점</h2>
-        <p>
-          Flask를 기반으로 백엔드와 프런트엔드의 연결 구조를 완전히 이해하게 되었으며,<br>
-          유지보수성과 확장성을 모두 갖춘 개인 웹 애플리케이션을 완성했습니다.
-        </p>
+        <h2>주요 특징</h2>
+        <table class="feature-table">
+          <tr><th>구분</th><th>설명</th></tr>
+          <tr><td>Flask 백엔드</td><td>간단한 라우팅으로 페이지 전환 및 렌더링 관리</td></tr>
+          <tr><td>템플릿 상속</td><td>base.html 기반 구조로 재사용성 확보</td></tr>
+          <tr><td>반응형 디자인</td><td>CSS Grid & Flexbox로 모바일/데스크톱 호환</td></tr>
+          <tr><td>프로젝트 갤러리</td><td>이미지 카드 + 호버 효과 + 상세 모달 구현</td></tr>
+          <tr><td>Contact 페이지</td><td>Flask-Mail 기반 이메일 전송 기능 구현 예정</td></tr>
+        </table>
+
       </div>
 
       <a href="{{ url_for('projects') }}" class="back-btn">← 프로젝트 목록으로 돌아가기</a>
@@ -54,5 +81,29 @@
   </section>
 
   <script src="{{ url_for('static', filename='transition.js') }}"></script>
+  <!-- Image Modal -->
+<div id="imgModal" class="img-modal">
+  <span class="img-modal-close">&times;</span>
+  <img class="img-modal-content" id="modalImage">
+</div>
+
+<script>
+  const modal = document.getElementById("imgModal");
+  const modalImg = document.getElementById("modalImage");
+  const closeBtn = document.querySelector(".img-modal-close");
+
+  document.querySelectorAll(".project-img").forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "flex";  // flex로 가운데 정렬
+      modalImg.src = img.src;
+    });
+  });
+
+  closeBtn.onclick = () => modal.style.display = "none";
+  modal.onclick = e => {
+    if (e.target === modal) modal.style.display = "none";
+  };
+</script>
+
 </body>
 </html>

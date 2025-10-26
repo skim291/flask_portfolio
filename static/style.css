@@ -32,7 +32,7 @@ body.fade-out {
   justify-content: flex-start;
   text-align: center;
   padding: 140px 60px;
-  animation: fadeInUp 1.2s ease both;
+  /* ✅ 애니메이션 제거 */
 }
 
 /* 프로필 이미지 */
@@ -43,7 +43,7 @@ body.fade-out {
   object-fit: cover;
   margin-bottom: 25px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 1.4s ease both;
+  /* ✅ 애니메이션 제거 */
 }
 
 /* 인사말 문구 */
@@ -55,9 +55,8 @@ body.fade-out {
   position: relative;
   max-width: 400px;
   margin-top: 10px;
-  opacity: 0;
-  animation: fadeIn 1.8s ease forwards;
-  animation-delay: 0.3s;
+  /* ✅ 애니메이션 제거 */
+  opacity: 1; /* 항상 표시 */
 }
 
 /* 따옴표 스타일 */
@@ -80,7 +79,7 @@ body.fade-out {
   right: -15px;
 }
 
-/* ✅ 오른쪽: 정보 영역 (페이지별로 바뀜) */
+/* ✅ 오른쪽: 정보 영역 (부드럽게 등장) */
 .right-section {
   flex: 1;
   background-color: #fff;
@@ -88,8 +87,8 @@ body.fade-out {
   position: relative;
   overflow-y: auto;
   opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 1s ease forwards;
+  transform: translateX(40px);
+  animation: fadeInRight 1s ease forwards;
   animation-delay: 0.4s;
 }
 
@@ -227,31 +226,15 @@ body.fade-out {
   border-color: #777;
 }
 
-/* ---------- 부드러운 애니메이션 ---------- */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
+/* ✅ 새 애니메이션 정의 */
+@keyframes fadeInRight {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateX(40px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 
@@ -280,37 +263,12 @@ body.fade-out {
 
 
 /* ---------- Projects Page ---------- */
-.projects-section {
-  margin-top: 10px;      /* ✅ 기존 120px → 40px */
-  padding-top: 0px;     /* ✅ 상단에 여백 추가 */
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-.projects-section h1 {
-  font-size: 44px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  letter-spacing: -0.5px;
-}
-
-.projects-section .subtitle {
-  font-size: 17px;
-  color: #666;
-  margin-bottom: 48px;
-}
-
-/* 카드 그리드 */
-.projects-grid {
-  display: flex;
-  flex-direction: column;  /* ✅ 세로 정렬 */
-  gap: 28px;
-}
 
 /* 카드 스타일 */
 .project-card {
   display: flex;
-  flex-direction: row;   /* ✅ 이미지와 내용 나란히 배치 */
-  align-items: stretch;
+  flex-direction: row;
+  align-items: flex-start;
   background-color: #f9fafc;
   border-radius: 14px;
   text-decoration: none;
@@ -318,6 +276,7 @@ body.fade-out {
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease;
+  height: 260px; /* 약간 여유 */
 }
 
 .project-card:hover {
@@ -326,15 +285,42 @@ body.fade-out {
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-/* 카드 이미지 */
+/* 이미지 영역 */
+.image-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 이미지 */
 .project-card img {
   width: 280px;
   height: 200px;
   object-fit: cover;
-  flex-shrink: 0;
+  display: block;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-/* 카드 내부 텍스트 */
+/* 날짜 — 이미지 바로 아래 */
+.project-date {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  width: 100%;
+  font-size: 14px;
+  color: #4b5563;
+  font-weight: 500;
+  padding: 8px 0 0 20px; /* 위쪽 살짝 여백 */
+}
+
+.project-date i {
+  color: #4b5563;
+  font-size: 15px;
+}
+
+/* 텍스트 */
 .card-content {
   padding: 24px 28px;
   display: flex;
@@ -351,7 +337,7 @@ body.fade-out {
 }
 
 .project-card:hover .card-content h2 {
-  color: #2563eb; /* hover 시 강조 */
+  color: #2563eb;
 }
 
 .card-content p {
@@ -381,6 +367,7 @@ body.fade-out {
 
   .project-card {
     flex-direction: column;
+    height: auto; /* ✅ 모바일에서는 자동 높이 */
   }
 
   .project-card img {
@@ -390,6 +377,11 @@ body.fade-out {
 
   .card-content {
     padding: 20px;
+  }
+
+  .project-date {
+    left: 12px;
+    bottom: 12px;
   }
 }
 
@@ -403,22 +395,6 @@ body.fade-out {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* ---------- Project Card Date Style ---------- */
-.project-date {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  color: #4b5563;            /* 중간 회색 톤 텍스트 */
-  font-weight: 500;
-  margin: 12px 20px 0 20px;  /* 카드 양쪽과 이미지 사이 여백 */
-}
-
-.project-date i {
-  color: #4b5563;
-  font-size: 15px;
 }
 
 
@@ -469,7 +445,7 @@ body.fade-out {
 }
 
 .portfolio-content h2 {
-  color: #00c4ff;
+  color: #68b8cf;
   margin-top: 60px;
   font-size: 1.6rem;
 }
@@ -490,7 +466,7 @@ body.fade-out {
   content: "•";
   position: absolute;
   left: 0;
-  color: #00c4ff;
+  color: #00b8d4;
 }
 
 .tech-list {
@@ -504,7 +480,7 @@ body.fade-out {
 .tech-list span {
   background: rgba(255,255,255,0.1);
   border: 1px solid rgba(0,196,255,0.4);
-  color: #00c4ff;
+  color: #00b8d4;
   padding: 10px 18px;
   border-radius: 8px;
   font-weight: 600;
@@ -513,7 +489,7 @@ body.fade-out {
 .back-btn {
   display: inline-block;
   margin-top: 60px;
-  color: #1d4ed8;
+  color: #7e94d0;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1rem;
@@ -525,4 +501,168 @@ body.fade-out {
 }
 
 
+
+/* ✅ 부드러운 등장 애니메이션 추가 */
+.portfolio-full {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeSlideIn 1s ease-out forwards;
+}
+
+/* 내부 콘텐츠도 살짝 지연 등장 */
+.portfolio-inner {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInContent 1s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+/* 개별 콘텐츠(텍스트 등)에도 약한 페이드 적용 */
+.portfolio-content {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInContent 1s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+/* 🎬 애니메이션 정의 */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+/* ---------- Project Detail Image Style (height-based, left aligned) ---------- */
+.project-img {
+  height: 300px;                 /* 세로 기준 크기 (필요 시 220~300px로 조정 가능) */
+  width: auto;                   /* 비율 유지하면서 너비 자동 조정 */
+  max-height: 40vh;              /* 화면 높이 대비 최대 비율 제한 */
+  display: block;
+  margin: 25px 0;                /* 왼쪽 정렬 (auto 제거) */
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  
+  /* 입체감 있는 그림자 (이중 효과) */
+  box-shadow:
+    0 6px 15px rgba(0, 0, 0, 0.6),
+    0 0 25px rgba(0, 196, 255, 0.25);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-img:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(0, 196, 255, 0.35);
+}
+
+
+/* ---------- Project Image Modal (Viewport Fit Version) ---------- */
+.img-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background-color: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+}
+
+.img-modal-content {
+  max-width: 90%;       /* 뷰포트 너비 90% 이하 */
+  max-height: 85vh;      /* 뷰포트 높이 85% 이하 */
+  object-fit: contain;   /* 비율 유지하며 맞춤 */
+  border-radius: 10px;
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(0, 196, 255, 0.4);
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.img-modal-close {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.img-modal-close:hover {
+  color: #00b8d4;
+}
+
+
+/* ✅ 가로 스크롤 방지 및 폭 계산 보정 */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+.navbar {
+  width: calc(100% - 160px);
+  box-sizing: border-box;
+}
+
+.container {
+  overflow-x: hidden; /* flex 컨테이너 기준으로 오버플로우 차단 */
+}
+
+
+/* '김서현의 포트폴리오' — 자연스러운 강조 */
+.highlight-title {
+  font-weight: 700; /* 기존보다 조금 더 두껍게 */
+  font-size: 1.1em; /* 살짝 크게 */
+  color: #fff; /* 본문 톤 유지 */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* 은은한 그림자 */
+}
+
+/* ---------- Projects Page Layout Spacing Fix ---------- */
+.projects-section {
+  margin-top: 60px;        /* 상단 여유 공간 */
+  padding: 0 0 80px;       /* 하단 여백만 추가 (좌우 padding 제거) */
+}
+
+.projects-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;               /* 카드 간격 넓히기 (기존보다 여유 있게) */
+}
+
+/* 개별 카드 정렬 개선 */
+.project-card {
+  margin: 0;               /* ✅ 가운데 정렬 제거 — 가로폭 유지 */
+  width: 100%;             /* ✅ 기존 레이아웃 폭 유지 (flex 내부 비율 그대로) */
+  max-width: none;         /* ✅ 폭 제한 해제 */
+}
 

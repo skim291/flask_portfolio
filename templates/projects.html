@@ -49,18 +49,16 @@
 
     <!-- ✅ Flask 기반 웹 포트폴리오 (상세 페이지 이동) -->
     <a href="{{ url_for('portfolio_detail') }}" class="project-card">
-      <div class="image-wrapper">
-        <img src="{{ url_for('static', filename='portfolio.jpg') }}" 
-        alt="포트폴리오" 
-        style="width: 280px; height: 260px; object-fit: cover;">
+  <div class="image-wrapper">
+    <img src="{{ url_for('static', filename='portfolio.jpg') }}" alt="포트폴리오" />
+  </div>
+  <div class="card-content">
+    <h2>Flask 기반 웹 포트폴리오</h2>
+    <p>Flask 서버와 템플릿 엔진을 활용해 제작한 개인 포트폴리오 웹사이트 프로젝트입니다.</p>
+    <span class="view-more">자세히 보기 →</span>
+  </div>
+</a>
 
-      </div>
-      <div class="card-content">
-        <h2>Flask 기반 웹 포트폴리오</h2>
-        <p>Flask 서버와 템플릿 엔진을 활용해 제작한 개인 포트폴리오 웹사이트 프로젝트입니다.</p>
-        <span class="view-more">자세히 보기 →</span>
-      </div>
-    </a>
 
   </div>
 </div>
