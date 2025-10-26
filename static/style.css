@@ -19,7 +19,6 @@ body.fade-out {
 .container {
   display: flex;
   height: 100vh;
-  animation: fadeSlideIn 1s ease-in-out both;
 }
 
 /* ✅ 왼쪽: 프로필 + 인사말 (고정 영역) */
@@ -242,7 +241,6 @@ body.fade-out {
 @media (max-width: 900px) {
   .container {
     flex-direction: column;
-    animation: fadeIn 1s ease-in-out both;
   }
 
   .left-section, .right-section {
