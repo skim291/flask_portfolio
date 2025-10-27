@@ -686,3 +686,13 @@ code {
 html {
   scrollbar-gutter: stable;
 }
+
+/* 화면 흔들림(폭 재계산) 방지 */
+body {
+  overflow-y: scroll; /* 항상 스크롤 공간 확보 */
+}
+
+.right-section,
+.intro {
+  will-change: opacity, transform; /* 초기 애니메이션 안정화 */
+}
