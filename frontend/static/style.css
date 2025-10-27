@@ -673,7 +673,13 @@ code {
   font-family: 'Consolas', 'Courier New', monospace;
   font-size: 0.95rem;
   box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.15);
+  display: inline-block;       /* ✅ 폭 제어 */
+  max-width: 100%;             /* ✅ 부모 영역 벗어나지 않도록 */
+  white-space: nowrap;         /* ✅ 줄바꿈 방지 */
+  overflow: hidden;            /* ✅ 스크롤바 방지 */
+  text-overflow: ellipsis;     /* ✅ 내용 넘치면 말줄임 */
 }
+
 
 /* 다크 배경(포트폴리오 상세 페이지)에서의 코드 강조 */
 .portfolio-detail-body code {
@@ -685,14 +691,4 @@ code {
 /* 스크롤바 유무에 상관없이 항상 공간 확보 */
 html {
   scrollbar-gutter: stable;
-}
-
-/* 화면 흔들림(폭 재계산) 방지 */
-body {
-  overflow-y: scroll; /* 항상 스크롤 공간 확보 */
-}
-
-.right-section,
-.intro {
-  will-change: opacity, transform; /* 초기 애니메이션 안정화 */
 }
