@@ -144,7 +144,7 @@ body.fade-out {
 .intro {
   position: absolute;
   top: 65%;
-  left: 33%;
+  left: 38%;
   transform: translate(-33%, -60%);
   max-width: 480px;
   opacity: 0;
