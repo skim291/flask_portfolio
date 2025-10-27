@@ -164,7 +164,7 @@ body.fade-out {
 
 /* 이름 */
 .intro h1 {
-  font-size: 93px;
+  font-size: 91px;
   font-weight: 700;
   margin: 0 0 16px 0;
   line-height: 1.1;
@@ -172,7 +172,7 @@ body.fade-out {
 
 /* 직업 */
 .intro h2 {
-  font-size: 29px;
+  font-size: 27px;
   font-weight: 400;
   margin: 0 0 40px 0;
   color: #333;
@@ -180,7 +180,7 @@ body.fade-out {
 
 /* 연락처 정보 */
 .info p {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.8;
   margin: 4px 0;
   color: #222;
