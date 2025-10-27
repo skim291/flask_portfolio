@@ -662,3 +662,7 @@ html, body {
   max-width: none;         /* ✅ 폭 제한 해제 */
 }
 
+/* 스크롤바 유무에 상관없이 항상 공간 확보 */
+html {
+  scrollbar-gutter: stable;
+}
