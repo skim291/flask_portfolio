@@ -13,13 +13,15 @@ body.fade-out {
   opacity: 0;
 }
 
-/* 전체 컨테이너 */
+/* ---------- 기본 레이아웃 ---------- */
 .container {
   display: flex;
   height: 100vh;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
-/* ✅ 왼쪽: 프로필 + 인사말 (고정 영역) */
+/* 왼쪽 영역 (프로필) */
 .left-section {
   flex: 1;
   background-color: #1C1C1C;
@@ -29,10 +31,8 @@ body.fade-out {
   justify-content: flex-start;
   text-align: center;
   padding: 140px 60px;
-  /* ✅ 애니메이션 제거 */
 }
 
-/* 프로필 이미지 */
 .left-section img {
   width: auto;
   height: 480px;
@@ -40,10 +40,8 @@ body.fade-out {
   object-fit: cover;
   margin-bottom: 25px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  /* ✅ 애니메이션 제거 */
 }
 
-/* 인사말 문구 */
 .quote {
   font-family: 'Noto Serif KR', serif;
   font-size: 1.25rem;
@@ -52,11 +50,8 @@ body.fade-out {
   position: relative;
   max-width: 400px;
   margin-top: 10px;
-  /* ✅ 애니메이션 제거 */
-  opacity: 1; /* 항상 표시 */
 }
 
-/* 따옴표 스타일 */
 .quote::before,
 .quote::after {
   font-size: 2.5rem;
@@ -64,43 +59,21 @@ body.fade-out {
   position: absolute;
 }
 
-.quote::before {
-  content: "“";
-  top: -20px;
-  left: -15px;
-}
+.quote::before { content: "“"; top: -20px; left: -15px; }
+.quote::after { content: "”"; bottom: -25px; right: -15px; }
 
-.quote::after {
-  content: "”";
-  bottom: -25px;
-  right: -15px;
-}
-
-/* ✅ 오른쪽: 정보 영역 (부드럽게 등장) */
+/* 오른쪽 정보 영역 */
 .right-section {
   flex: 1;
   background-color: #fff;
   padding: 100px 80px;
   position: relative;
   overflow-y: auto;
-  opacity: 0;
-  transform: translateX(40px);
   animation: fadeInRight 1s ease forwards;
   animation-delay: 0.4s;
 }
 
-/* 내용 텍스트*/
-.page-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: left;
-  animation: fadeSlideIn 1s ease-in-out both;
-}
-
-/* 상단 네비게이션 */
+/* ---------- 공통 요소 ---------- */
 .navbar {
   position: absolute;
   top: 40px;
@@ -109,12 +82,10 @@ body.fade-out {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  opacity: 0;
   animation: fadeIn 1s ease forwards;
   animation-delay: 0.3s;
 }
 
-/* 왼쪽 로고 텍스트 */
 .logo-text {
   font-size: 1.1rem;
   font-weight: 700;
@@ -122,7 +93,6 @@ body.fade-out {
   letter-spacing: 1px;
 }
 
-/* 오른쪽 네비게이션 */
 .nav-right {
   display: flex;
   gap: 28px;
@@ -140,7 +110,7 @@ body.fade-out {
   color: #777;
 }
 
-/* 중앙 텍스트 영역 */
+/* 중앙 소개 영역 */
 .intro {
   position: absolute;
   top: 62%;
@@ -152,17 +122,6 @@ body.fade-out {
   animation-delay: 0.5s;
 }
 
-@keyframes fadeIntro {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-
-/* 이름 */
 .intro h1 {
   font-size: 91px;
   font-weight: 700;
@@ -170,7 +129,6 @@ body.fade-out {
   line-height: 1.1;
 }
 
-/* 직업 */
 .intro h2 {
   font-size: 27px;
   font-weight: 400;
@@ -178,7 +136,6 @@ body.fade-out {
   color: #333;
 }
 
-/* 연락처 정보 */
 .info p {
   font-size: 18px;
   line-height: 1.8;
@@ -186,23 +143,8 @@ body.fade-out {
   color: #222;
 }
 
-.info strong {
-  font-weight: 600;
-  margin-right: 6px;
-}
+.info strong { font-weight: 600; margin-right: 6px; }
 
-/* 링크 영역 */
-.info a {
-  color: #222;
-  text-decoration: underline;
-  margin-right: 10px;
-}
-
-.info a:hover {
-  color: #777;
-}
-
-/* 아래쪽 버튼 */
 .resume-link {
   display: inline-block;
   margin-top: 80px;
@@ -223,39 +165,144 @@ body.fade-out {
   border-color: #777;
 }
 
-/* ✅ 새 애니메이션 정의 */
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ---------- 애니메이션 ---------- */
+@keyframes fadeIntro { from {opacity:0;} to {opacity:1;} }
+@keyframes fadeInRight { from {opacity:0;transform:translateY(40px);} to {opacity:1;transform:translateY(0);} }
+@keyframes fadeIn { from {opacity:0;transform:translateY(20px);} to {opacity:1;transform:translateY(0);} }
 
-/* 반응형 */
-@media (max-width: 900px) {
+/* ---------- 반응형 레이아웃 ---------- */
+
+/* 💻 태블릿 가로 (최대 1200px) */
+@media (max-width: 1200px) {
   .container {
     flex-direction: column;
+    height: auto;
   }
 
   .left-section, .right-section {
-    flex: none;
     width: 100%;
+    padding: 80px 60px;
+  }
+
+  .left-section img {
+    width: 70%;
     height: auto;
-    padding: 60px 40px;
+    max-width: 360px;
   }
 
   .intro {
     position: static;
     transform: none;
-    margin: 60px auto;
     text-align: center;
-    animation: fadeInUp 1s ease forwards;
+    margin: 80px auto;
+  }
+
+  .intro h1 { font-size: 64px; }
+  .intro h2 { font-size: 24px; }
+  .info p { font-size: 16px; }
+}
+
+/* 📱 아이패드 세로 / 중간 기기 (최대 900px) */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-section, .right-section {
+    padding: 60px 40px;
+  }
+
+  .navbar {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 40px;
+    justify-content: center;
+  }
+
+  .intro {
+    margin: 40px auto;
+    text-align: center;
+  }
+
+  .intro h1 { font-size: 52px; }
+  .intro h2 { font-size: 22px; }
+  .info p { font-size: 15px; }
+
+  .resume-link {
+    margin-top: 50px;
+    font-size: 16px;
+  }
+
+  .left-section img {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
   }
 }
+
+/* 📲 스마트폰 (최대 600px) */
+@media (max-width: 600px) {
+  body {
+    font-size: 15px;
+  }
+
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-section, .right-section {
+    padding: 40px 25px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .nav-right {
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .intro {
+    text-align: center;
+    margin: 40px auto;
+  }
+
+  .intro h1 {
+    font-size: 38px;
+  }
+
+  .intro h2 {
+    font-size: 18px;
+  }
+
+  .info p {
+    font-size: 14px;
+  }
+
+  .resume-link {
+    font-size: 15px;
+  }
+
+  .left-section img {
+    width: 90%;
+    max-width: 250px;
+    height: auto;
+  }
+
+  .quote {
+    font-size: 1rem;
+  }
+}
+
+
+
 
 
 /* ---------- Projects Page ---------- */
