@@ -21,6 +21,5 @@ def contact():
     
     return jsonify({"status": "success", "message": "Form submitted successfully"})
 
-
 if __name__ == '__main__':
     app.run(debug=True)
