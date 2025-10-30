@@ -32,6 +32,14 @@ html, body {
   overflow: hidden;  /* ✅ 내부 이중 스크롤 차단 */
 }
 
+/* 오른쪽 영역 기본 상태: 스크롤 없음 */
+.right-section {
+  flex: 1;
+  background-color: #fff;
+  padding: 100px 80px;
+  position: relative;
+  overflow: hidden; /* ✅ 모든 페이지 기본 스크롤 제거 */
+}
 
 /* ✅ Projects 페이지만 세로 스크롤 허용 */
 .projects-page .right-section {
