@@ -35,10 +35,10 @@ body.portfolio-detail-page {
 .container {
   display: flex;
   min-height: 100vh;
-  overflow: hidden;
+  overflow: hidden; /* 전체 스크롤 차단 — 오른쪽만 스크롤 */
 }
 
-/* 오른쪽 영역 */
+/* 오른쪽 영역 기본 */
 .right-section {
   flex: 1;
   background-color: #fff;
@@ -50,13 +50,14 @@ body.portfolio-detail-page {
 /* ✅ 스크롤이 필요한 페이지에서는 내부도 자연스럽게 확장 */
 body.projects-page .right-section,
 body.portfolio-detail-page .right-section {
-  overflow-y: visible;
+  overflow-y: auto;  /* ✅ 오른쪽만 스크롤 */
+  height: 100vh;     /* 뷰포트 높이만큼 채움 */
+  -webkit-overflow-scrolling: touch; /* 모바일 부드러운 스크롤 */
 }
 
 
 
-
-/* ======================= 🧱 LAYOUT ======================= */
+/* ======================= 🧱 LAYOUT (sticky 버전) ======================= */
 
 /* 왼쪽 영역 (프로필) */
 .left-section {
@@ -68,12 +69,20 @@ body.portfolio-detail-page .right-section {
   justify-content: flex-start;
   text-align: center;
   padding: 140px 60px;
+
+  /* ✅ sticky 적용 */
+  position: sticky;
+  top: 0;
+  height: 100vh; /* 항상 화면 전체 높이 유지 */
+  overflow: hidden; /* 내부 스크롤 방지 */
+
   opacity: 1 !important;
   transform: none !important;
   animation: none !important;
-  will-change: auto; /* ✅ GPU 가속 불필요 */
+  will-change: auto;
 }
 
+/* 왼쪽 프로필 이미지 */
 .left-section img {
   width: auto;
   height: 480px;
@@ -101,15 +110,14 @@ body.portfolio-detail-page .right-section {
 .quote::before { content: "“"; top: -20px; left: -15px; }
 .quote::after { content: "”"; bottom: -25px; right: -15px; }
 
-/* 오른쪽 정보 영역 */
+/* 오른쪽 콘텐츠 */
 .right-section {
   flex: 1;
   background-color: #fff;
   padding: 100px 80px;
   position: relative;
-  overflow: hidden;
 
-  /* ✅ 오른쪽만 애니메이션 적용 */
+  /* ✅ 등장 애니메이션 */
   will-change: opacity, transform;
   opacity: 0;
   transform: translateY(20px);
@@ -121,7 +129,8 @@ body.portfolio-detail-page .right-section {
 .about-page .right-section { padding-top: 23vh; }
 
 /* ✅ Projects 페이지는 상단 여백 최소화 */
-.projects-page .right-section { padding-top: 40px; }
+.projects-page .right-section { padding-top: 60px; }
+
 
 
 
@@ -217,14 +226,15 @@ body.portfolio-detail-page .right-section {
 /* 홈(메인) 페이지만 중앙 정렬 */
 .home-page .intro {
   position: absolute !important;
-  top: 55% !important;
+  top: 57% !important;
   left: 38% !important;
-  transform: translate(-33%, -55%) !important;
+  transform: translate(-33%, -50%) !important;
   max-width: 480px;
   opacity: 0;
   animation: fadeInChild 1s ease forwards;
   animation-delay: 0.5s;
 }
+
 
 /* 다른 페이지에서 오염 방지 */
 .about-page .intro,
