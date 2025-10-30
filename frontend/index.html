@@ -1,108 +1,59 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>김서현 | 포트폴리오</title>
-  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="stylesheet" href="static/style.css">
 </head>
-
-<body>
+<body class="home-page">
   <div class="container">
-    <!-- ✅ 왼쪽 섹션: 프로필 + About + Contact -->
     <div class="left-section">
-      <div class="profile-area">
-        <img src="/static/img/profile.jpg" alt="프로필 사진" class="profile-img" />
-
-        <div class="quote">
-          <p>
-            데이터로 세상의 흐름을 읽어내는<br />
-            데이터 분석가 김서현입니다.
-          </p>
-        </div>
-      </div>
-
-      <div class="about-section">
-        <h2>About Me</h2>
-        <p>
-          데이터를 통해 복잡한 문제를 이해하고,<br />
-          그 속에서 새로운 가능성을 발견하는 일에 큰 흥미를 가지고 있습니다.<br /><br />
-          국제학을 전공한 경험을 바탕으로 데이터 사이언스로 영역을 확장하며<br />
-          정성적 통찰을 정량적 분석으로 연결하는 역량을 키워왔습니다.<br /><br />
-          빠르게 변하는 환경 속에서 지속적인 학습과 시도를 통해,<br />
-          데이터로 더 나은 결정을 만들어가는 분석가로 성장하고 있습니다.
-        </p>
-
-        <h3>Skills</h3>
-        <ul>
-          <li>Python (pandas, numpy, matplotlib, scikit-learn)</li>
-          <li>SQL</li>
-          <li>Machine Learning & Data Visualization</li>
-          <li>Windows/macOS</li>
-        </ul>
-      </div>
-
-      <div class="contact-section">
-        <h2>Contact</h2>
-        <p><strong>이메일:</strong> <a href="mailto:skim291@gmu.edu">skim291@gmu.edu</a></p>
-        <p><strong>전화번호:</strong> 010-4087-9346</p>
-        <p><strong>LinkedIn:</strong> 
-          <a href="https://www.linkedin.com/in/skim291/" target="_blank">linkedin.com/in/skim291</a>
-        </p>
-        <p><strong>GitHub:</strong>
-          <a href="https://github.com/skim291" target="_blank">github.com/skim291</a>
-        </p>
+      <img src="/static/profile.jpg" alt="프로필 사진">
+      <div class="quote">
+        <p>데이터로 세상의 흐름을 읽어내는<br>데이터 분석가 김서현입니다.</p>
       </div>
     </div>
 
-    <!-- ✅ 오른쪽 섹션: Projects -->
     <div class="right-section">
-      <div class="projects-section">
-        <h1>Analytical Projects</h1>
-        <div class="projects-grid">
-          <a href="https://blog.naver.com/rlatjgus030901/224047598198" class="project-card" target="_blank">
-            <div class="image-wrapper">
-              <img src="/static/img/project2.jpg" alt="RPA 프로젝트" />
-              <div class="project-date">
-                <i class="fa-regular fa-calendar"></i> 2025.09 - 2025.10
-              </div>
-            </div>
-            <div class="card-content">
-              <h2>RPA를 활용한<br />환율 예측 프로젝트</h2>
-              <p>RPA를 이용하여 환율 데이터를 수집하고, 머신러닝 모델로 예측하는 프로젝트입니다.</p>
-              <span class="view-more">자세히 보기 →</span>
-            </div>
-          </a>
-
-          <a href="https://blog.naver.com/rlatjgus030901/223934803166" class="project-card" target="_blank">
-            <div class="image-wrapper">
-              <img src="/static/img/project1.jpg" alt="인트라넷 프로젝트" />
-              <div class="project-date">
-                <i class="fa-regular fa-calendar"></i> 2025.06 - 2025.07
-              </div>
-            </div>
-            <div class="card-content">
-              <h2>사내 협업을 위한<br />백엔드 인트라넷 플랫폼</h2>
-              <p>Flask와 MongoDB 기반 웹 시스템 구현 프로젝트입니다.</p>
-              <span class="view-more">자세히 보기 →</span>
-            </div>
-          </a>
-
-          <a href="/portfolio_detail.html" class="project-card">
-            <div class="image-wrapper">
-              <img src="/static/img/portfolio.jpg" alt="포트폴리오 프로젝트" />
-            </div>
-            <div class="card-content">
-              <h2>Flask 기반 웹 포트폴리오</h2>
-              <p>Flask로 라우팅과 템플릿을 구성하고, 정적 리소스를 분리 관리하여 제작한 웹 포트폴리오입니다.</p>
-              <span class="view-more">자세히 보기 →</span>
-            </div>
-          </a>
+      <header class="navbar">
+        <div class="nav-left">
+          <span class="logo-text">SEOHYUN KIM</span>
         </div>
+
+        <nav class="nav-right">
+          <a href="/index.html">Home</a>
+          <a href="/about.html">About</a>
+          <a href="/projects.html">Projects</a>
+        </nav>
+      </header>
+
+      <div class="intro">
+        <h1>김서현</h1>
+        <h2>신입 데이터 분석가</h2>
+
+        <div class="info">
+          <p><strong>생년월일</strong> 2003.09.01</p>
+          <p><strong>전화번호</strong> 010-4087-9346</p>
+          <p><strong>이메일</strong> skim291@gmu.edu</p>
+          <p><strong>주소</strong> 서울시 종로구</p>
+          <p><strong>LinkedIn:</strong> 
+            <a href="https://www.linkedin.com/in/skim291/" target="_blank">
+              linkedin.com/in/skim291
+            </a>
+          </p>
+          <p><strong>GitHub:</strong>
+            <a href="https://github.com/skim291" target="_blank">
+              github.com/skim291
+            </a>
+          </p>
+        </div>
+
+        <a href="/projects.html" class="resume-link">프로젝트 보러가기 ↓</a>
       </div>
     </div>
   </div>
 
-  <script src="/static/js/transition.js"></script>
+  <script src="/static/transition.js"></script>
 </body>
 </html>

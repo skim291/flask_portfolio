@@ -1,9 +1,9 @@
-# backend/app.py
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Netlify에서 오는 요청 허용
+# Vercel 프론트엔드만 허용
+CORS(app, origins=["https://your-portfolio.vercel.app"])
 
 @app.route('/')
 def home():
@@ -16,7 +16,6 @@ def contact():
     email = data.get("email")
     message = data.get("message")
     
-    # 여기서 이메일 전송 또는 DB 저장 로직 수행 가능
     print(f"New contact from {name} ({email}): {message}")
     
     return jsonify({"status": "success", "message": "Form submitted successfully"})
