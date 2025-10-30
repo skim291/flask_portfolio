@@ -131,9 +131,6 @@ html {
   justify-content: space-between;
   align-items: center;
   opacity: 1;
-  transform: none;
-  animation: none;
-  animation-delay: 0s;
 }
 
 .logo-text {
