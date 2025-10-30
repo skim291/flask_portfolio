@@ -2,11 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;500&display=swap');
 
 /* ======================= 🌐 GLOBAL ======================= */
-* { box-sizing: border-box; }
-
 html, body {
   margin: 0;
   overflow-x: hidden;
+  height: 100%;
   font-family: 'Noto Sans KR', sans-serif;
   background-color: #fff;
   color: #111;
@@ -19,37 +18,42 @@ body.fade-out { opacity: 0; }
 
 /* ======================= 🧱 SCROLL FIX ======================= */
 
-/* 전체 페이지 기본적으로 스크롤 제거 */
-html, body {
-  overflow: hidden; /* ✅ 스크롤 완전 비활성화 */
+/* ✅ 기본적으로 스크롤 제거 (홈, 소개 등 고정 페이지용) */
+body {
+  overflow: hidden;
   height: 100%;
 }
 
-/* 컨테이너는 flex로 구성하되 높이 자동 확장 */
-.container {
-  display: flex;
-  min-height: 100vh; /* ✅ 내용이 길면 자동으로 확장됨 */
-  overflow: hidden;  /* ✅ 내부 이중 스크롤 차단 */
+/* ✅ Projects, Portfolio 상세 페이지에서만 스크롤 허용 */
+body.projects-page,
+body.portfolio-detail-page {
+  overflow-y: auto;
+  height: auto;
 }
 
-/* 오른쪽 영역 기본 상태: 스크롤 없음 */
+/* 컨테이너 구조 */
+.container {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* 오른쪽 영역 */
 .right-section {
   flex: 1;
   background-color: #fff;
   padding: 100px 80px;
   position: relative;
-  overflow: hidden; /* ✅ 모든 페이지 기본 스크롤 제거 */
+  overflow: hidden;
 }
 
-/* ✅ Projects 페이지만 세로 스크롤 허용 */
-.projects-page .right-section {
-  overflow-y: auto;  /* ✅ 세로 스크롤 1개만 표시 */
+/* ✅ 스크롤이 필요한 페이지에서는 내부도 자연스럽게 확장 */
+body.projects-page .right-section,
+body.portfolio-detail-page .right-section {
+  overflow-y: visible;
 }
 
-/* 선택적으로 — 스크롤바 깜빡임 방지 */
-html {
-  scrollbar-gutter: stable;
-}
+
 
 
 /* ======================= 🧱 LAYOUT ======================= */
@@ -228,6 +232,11 @@ html {
   position: static !important;
   transform: none !important;
 }
+
+body.about-page {
+  font-size: 1.1rem; /* ✅ 기본보다 약 5% 크게 */
+}
+
 
 
 /* ======================= 🎬 ANIMATIONS ======================= */
@@ -419,7 +428,7 @@ html {
 
 
 /* ===== Portfolio Detail Page Style ===== */
-.portfolio-detail-body {
+.portfolio-detail-page {
   background: #1C1C1C;
   color: #fff;
   margin: 0;
@@ -722,7 +731,7 @@ code {
 
 
 /* 다크 배경(포트폴리오 상세 페이지)에서의 코드 강조 */
-.portfolio-detail-body code {
+.portfolio-detail-page code {
   background-color: rgba(255, 255, 255, 0.08);
   color: #00b8d4;
   box-shadow: 0 1px 4px rgba(0, 196, 255, 0.25);
