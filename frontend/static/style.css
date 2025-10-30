@@ -32,14 +32,6 @@ html, body {
   overflow: hidden;  /* ✅ 내부 이중 스크롤 차단 */
 }
 
-/* 오른쪽 영역 기본 상태: 스크롤 없음 */
-.right-section {
-  flex: 1;
-  background-color: #fff;
-  padding: 100px 80px;
-  position: relative;
-  overflow: hidden; /* ✅ 모든 페이지 기본 스크롤 제거 */
-}
 
 /* ✅ Projects 페이지만 세로 스크롤 허용 */
 .projects-page .right-section {
@@ -98,19 +90,19 @@ html {
 .quote::after { content: "”"; bottom: -25px; right: -15px; }
 
 /* 오른쪽 정보 영역 */
-/* .right-section {
+.right-section {
   flex: 1;
   background-color: #fff;
   padding: 100px 80px;
   position: relative;
-  overflow: hidden; */
+  overflow: hidden;
 
   /* ✅ 오른쪽만 애니메이션 적용 */
-  /* will-change: opacity, transform;
+  will-change: opacity, transform;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInChild 0.9s ease-out forwards;
-  animation-delay: 0.5s; */
+  animation-delay: 0.5s;
 }
 
 /* ✅ About 페이지는 화면의 23vh 아래부터 시작 */
