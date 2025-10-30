@@ -17,16 +17,42 @@ html, body {
 
 body.fade-out { opacity: 0; }
 
-/* ======================= 🧱 LAYOUT ======================= */
+/* ======================= 🧱 SCROLL FIX ======================= */
+
+/* 전체 페이지 기본적으로 스크롤 제거 */
+html, body {
+  overflow: hidden; /* ✅ 스크롤 완전 비활성화 */
+  height: 100%;
+}
+
+/* 컨테이너는 flex로 구성하되 높이 자동 확장 */
 .container {
   display: flex;
-  height: 100vh;
-  overflow-x: hidden;
-  will-change: opacity, transform;
-  opacity: 0;
-  transform: translateY(25px);
-  animation: fadeInContainer 0.9s ease-out forwards;
+  min-height: 100vh; /* ✅ 내용이 길면 자동으로 확장됨 */
+  overflow: hidden;  /* ✅ 내부 이중 스크롤 차단 */
 }
+
+/* 오른쪽 영역 기본 상태: 스크롤 없음 */
+.right-section {
+  flex: 1;
+  background-color: #fff;
+  padding: 100px 80px;
+  position: relative;
+  overflow: hidden; /* ✅ 모든 페이지 기본 스크롤 제거 */
+}
+
+/* ✅ Projects 페이지만 세로 스크롤 허용 */
+.projects-page .right-section {
+  overflow-y: auto;  /* ✅ 세로 스크롤 1개만 표시 */
+}
+
+/* 선택적으로 — 스크롤바 깜빡임 방지 */
+html {
+  scrollbar-gutter: stable;
+}
+
+
+/* ======================= 🧱 LAYOUT ======================= */
 
 /* 왼쪽 영역 (프로필) */
 .left-section {
@@ -72,19 +98,19 @@ body.fade-out { opacity: 0; }
 .quote::after { content: "”"; bottom: -25px; right: -15px; }
 
 /* 오른쪽 정보 영역 */
-.right-section {
+/* .right-section {
   flex: 1;
   background-color: #fff;
   padding: 100px 80px;
   position: relative;
-  overflow-y: auto;
+  overflow: hidden; */
 
   /* ✅ 오른쪽만 애니메이션 적용 */
-  will-change: opacity, transform;
+  /* will-change: opacity, transform;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInChild 0.9s ease-out forwards;
-  animation-delay: 0.5s;
+  animation-delay: 0.5s; */
 }
 
 /* ✅ About 페이지는 화면의 23vh 아래부터 시작 */
@@ -642,17 +668,10 @@ code:hover {
   box-sizing: border-box;
 }
 
-html, body {
-  overflow-x: hidden;
-}
 
 .navbar {
   width: calc(100% - 160px);
   box-sizing: border-box;
-}
-
-.container {
-  overflow-x: hidden; /* flex 컨테이너 기준으로 오버플로우 차단 */
 }
 
 
