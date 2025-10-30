@@ -131,6 +131,9 @@ html {
   justify-content: space-between;
   align-items: center;
   opacity: 1;
+  transform: none;
+  animation: none;
+  animation-delay: 0s;
 }
 
 .logo-text {
@@ -210,9 +213,9 @@ html {
 /* 홈(메인) 페이지만 중앙 정렬 */
 .home-page .intro {
   position: absolute !important;
-  top: 62% !important;
+  top: 55% !important;
   left: 38% !important;
-  transform: translate(-33%, -60%) !important;
+  transform: translate(-33%, -55%) !important;
   max-width: 480px;
   opacity: 0;
   animation: fadeInChild 1s ease forwards;
