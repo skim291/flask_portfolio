@@ -110,7 +110,7 @@ html {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInChild 0.9s ease-out forwards;
-  animation-delay: 0.5s;
+  animation-delay: 0.5s; 
 }
 
 /* ✅ About 페이지는 화면의 23vh 아래부터 시작 */
@@ -130,10 +130,10 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  opacity: 0;
-  transform: translateY(-10px);
-  animation: fadeInChild 0.8s ease-out forwards;
-  animation-delay: 0.3s;
+  opacity: 1;
+  transform: none;
+  animation: none;
+  animation-delay: 0s;
 }
 
 .logo-text {
