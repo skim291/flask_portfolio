@@ -752,18 +752,3 @@ html {
   scrollbar-gutter: stable;
 }
 
-/* ======================= 🧱 SCROLL CONTROL (FINAL OVERRIDE) ======================= */
-
-/* 기본적으로 스크롤 비활성화 (홈, 소개 등) */
-body.home-page,
-body.about-page {
-  overflow: hidden !important;
-  height: 100% !important;
-}
-
-/* 프로젝트 & 포트폴리오 상세 페이지만 스크롤 활성화 */
-body.projects-page,
-body.portfolio-detail-page {
-  overflow-y: auto !important;
-  height: auto !important;
-}
